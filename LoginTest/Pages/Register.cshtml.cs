@@ -5,19 +5,19 @@ using LoginTest.Services;
 
 namespace LoginTest.Pages
     {
-    public class IndexModel : PageModel
+    public class RegisterModel : PageModel
         {
         private readonly ISoapAuthService _auth;
-        public IndexModel(ISoapAuthService auth) => _auth = auth;
+        public RegisterModel(ISoapAuthService auth) => _auth = auth;
 
-        [BindProperty] public LoginInput Input { get; set; } = new();
+        [BindProperty] public RegisterInput Input { get; set; } = new();
         public AuthResult? Result { get; private set; }
 
         public async Task<IActionResult> OnPostAsync()
             {
             if (!ModelState.IsValid)
                 return Page();
-            Result = await _auth.LoginAsync(Input.Login, Input.Password);
+            Result = await _auth.RegisterAsync(Input.Email, Input.Password);
             return Page();
             }
         }

@@ -1,7 +1,10 @@
+using LoginTest.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddScoped<ISoapAuthService, SoapAuthService>();
 
 var app = builder.Build();
 
